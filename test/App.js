@@ -56,9 +56,10 @@ const App: () => React$Node = () => {
     //     <Stack.Screen name="Home" component={HomeScreen} />
     //   </Stack.Navigator>
     // </NavigationContainer>
-    <NavigationContainer>
+    <NavigationContainer style={{backgroundColor: '#694fad'}}>
       <Tab.Navigator
       initialRouteName="Feed"
+
       tabBarOptions={{
         activeTintColor: '#e91e63',
       }}>
@@ -67,6 +68,7 @@ const App: () => React$Node = () => {
           component={HomeScreen}
           options={{
             tabBarLabel: 'Home',
+            tabBarColor: '#694fad',
             tabBarIcon: ({color}) => (
               <MaterialCommunityIcons name="home" color={color} size={26} />
             ),
@@ -78,6 +80,7 @@ const App: () => React$Node = () => {
           component={NotificationScreen}
           options={{
             tabBarLabel: 'Updates',
+            tabBarColor: '#694fad',
             tabBarIcon: ({color}) => (
               <MaterialCommunityIcons name="bell" color={color} size={26} />
             ),
