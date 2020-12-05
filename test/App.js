@@ -28,34 +28,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon from 'react-native-vector-icons/Ionicons';
-
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen.</Text>
-    </View>
-  );
-}
-
-function NotificationScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Notification Screen.</Text>
-    </View>
-  );
-}
+import HomeScreen from './screens/HomeScreens/MainHome';
+import NotificationScreen from './screens/NotificationScreens/MainNotificatons';
+import ProfileScreen from './screens/ProfileScreens/MainProfiles';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const App: () => React$Node = () => {
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <Stack.Screen name="Home" component={HomeScreen} />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
     <NavigationContainer style={{backgroundColor: '#694fad'}}>
       <Tab.Navigator
       initialRouteName="Feed"
@@ -79,10 +60,22 @@ const App: () => React$Node = () => {
           name="Notifications"
           component={NotificationScreen}
           options={{
-            tabBarLabel: 'Updates',
+            tabBarLabel: 'Notifications',
             tabBarColor: '#694fad',
             tabBarIcon: ({color}) => (
               <MaterialCommunityIcons name="bell" color={color} size={26} />
+            ),
+          }}
+        />
+
+        <Tab.Screen
+          name="Profiles"
+          component={ProfileScreen}
+          options={{
+            tabBarLabel: 'Profiles',
+            tabBarColor: '#694fad',
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons name="account" color={color} size={26} />
             ),
           }}
         />
