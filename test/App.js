@@ -42,7 +42,7 @@ const App: () => React$Node = () => {
       initialRouteName="Feed"
 
       tabBarOptions={{
-        activeTintColor: '#e91e63',
+        activeTintColor: '#1BA9FF',
       }}>
         <Tab.Screen
           name="Feed"
