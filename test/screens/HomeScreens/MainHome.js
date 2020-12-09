@@ -52,7 +52,7 @@ const HomeScreen = () => {
             </View>
 
             <View>
-              <Text>News</Text>
+                <Text style={{color:'#777777'}}>News</Text>
             </View>
             
         </ScrollView>
@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
       fontSize: 12,
       marginTop:5,
       alignItems: 'center',
+      color: '#777777',
     }
 });
 
