@@ -36,7 +36,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // import files from '../assets/filesBase64';
 
-const HomeScreen = () => {
+const MainProfilesScreen = ({navigation}) => {
     return (
         // <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         //   <Text>Profile Screen.</Text>
@@ -64,19 +64,18 @@ const HomeScreen = () => {
 
         <View style={styles.userInfoSection}>
           <View style={styles.row}>
-            <Icon name="map-marker-radius" color="#777777" size={20}/>
-            <Text style={{color:"#777777", marginLeft: 20, marginRight: 10}}>Kolkata, India</Text>
-            <Icon name="lead-pencil" color="#1BA9FF" size={16}/>
+            <Icon name="account" color="#777777" size={20}/>
+            <Text style={{color:"#777777", marginLeft: 20, marginRight: 10}}>123456789</Text>
           </View>
           <View style={styles.row}>
             <Icon name="phone" color="#777777" size={20}/>
             <Text style={{color:"#777777", marginLeft: 20, marginRight: 10}}>+91-900000009</Text>
-            <Icon name="lead-pencil" color="#1BA9FF" size={16}/>
+            <Icon name="lead-pencil" color="#1BA9FF" size={16} onPress={() => navigation.navigate('Edit Profile')} />
           </View>
           <View style={styles.row}>
             <Icon name="email" color="#777777" size={20}/>
             <Text style={{color:"#777777", marginLeft: 20, marginRight: 10}}>john_doe@email.com</Text>
-            <Icon name="lead-pencil" color="#1BA9FF" size={16}/>
+            <Icon name="lead-pencil" color="#1BA9FF" size={16} onPress={() => navigation.navigate('Edit Profile')} />
           </View>
         </View>
 
@@ -95,14 +94,14 @@ const HomeScreen = () => {
         </View>
 
         <View style={styles.menuWrapper}>
-          <TouchableRipple>
+          <TouchableRipple onPress={()=>{navigation.navigate('Introduce')}}>
             <View style={styles.menuItem}>
               <Icon name="information" color="#1BA9FF" size={25}/>
               <Text style={styles.menuItemText}>Introduce</Text>
             </View>
           </TouchableRipple>
 
-          <TouchableRipple>
+          <TouchableRipple onPress={()=>{navigation.navigate('How to use')}}>
             <View style={styles.menuItem}>
               <Icon name="book-open-page-variant" color="#1BA9FF" size={25}/>
               <Text style={styles.menuItemText}>How to use</Text>
@@ -110,7 +109,7 @@ const HomeScreen = () => {
           </TouchableRipple>
           
           {/* <TouchableRipple onPress={myCustomShare}> */}
-          <TouchableRipple>
+          <TouchableRipple onPress={()=>{navigation.navigate('Settings')}}>
             <View style={styles.menuItem}>
               <Icon name="cog-outline" color="#1BA9FF" size={25}/>
               <Text style={styles.menuItemText}>Settings</Text>
@@ -179,4 +178,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default MainProfilesScreen;

@@ -6,6 +6,7 @@ import {
   ImageBackground,
   TextInput,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 
 import {useTheme} from 'react-native-paper';
@@ -14,10 +15,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 
-import BottomSheet from 'reanimated-bottom-sheet';
-import Animated from 'react-native-reanimated';
+//import BottomSheet from 'reanimated-bottom-sheet';
+// import Animated from 'react-native-reanimated';
 
-import ImagePicker from 'react-native-image-crop-picker';
+//import ImagePicker from 'react-native-image-crop-picker';
 
 const EditProfileScreen = () => {
 
@@ -25,29 +26,29 @@ const EditProfileScreen = () => {
   const {colors} = useTheme();
 
   const takePhotoFromCamera = () => {
-    ImagePicker.openCamera({
-      compressImageMaxWidth: 300,
-      compressImageMaxHeight: 300,
-      cropping: true,
-      compressImageQuality: 0.7
-    }).then(image => {
-      console.log(image);
-      setImage(image.path);
-      this.bs.current.snapTo(1);
-    });
+    // ImagePicker.openCamera({
+    //   compressImageMaxWidth: 300,
+    //   compressImageMaxHeight: 300,
+    //   cropping: true,
+    //   compressImageQuality: 0.7
+    // }).then(image => {
+    //   console.log(image);
+    //   setImage(image.path);
+    //   this.bs.current.snapTo(1);
+    // });
   }
 
   const choosePhotoFromLibrary = () => {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 300,
-      cropping: true,
-      compressImageQuality: 0.7
-    }).then(image => {
-      console.log(image);
-      setImage(image.path);
-      this.bs.current.snapTo(1);
-    });
+    // ImagePicker.openPicker({
+    //   width: 300,
+    //   height: 300,
+    //   cropping: true,
+    //   compressImageQuality: 0.7
+    // }).then(image => {
+    //   console.log(image);
+    //   setImage(image.path);
+    //   this.bs.current.snapTo(1);
+    // });
   }
 
   renderInner = () => (
@@ -79,11 +80,11 @@ const EditProfileScreen = () => {
   );
 
   bs = React.createRef();
-  fall = new Animated.Value(1);
+  // fall = new Animated.Value(1);
 
   return (
-    <View style={styles.container}>
-      <BottomSheet
+    <ScrollView style={styles.container}>
+      {/* <BottomSheet
         ref={this.bs}
         snapPoints={[330, 0]}
         renderContent={this.renderInner}
@@ -91,10 +92,11 @@ const EditProfileScreen = () => {
         initialSnap={1}
         callbackNode={this.fall}
         enabledGestureInteraction={true}
-      />
-      <Animated.View style={{margin: 20,
+      /> */}
+      {/* <Animated.View style={{margin: 20,
         opacity: Animated.add(0.1, Animated.multiply(this.fall, 1.0)),
-    }}>
+      }}> */}
+      <View>
         <View style={{alignItems: 'center'}}>
           <TouchableOpacity onPress={() => this.bs.current.snapTo(0)}>
             <View
@@ -134,15 +136,31 @@ const EditProfileScreen = () => {
               </ImageBackground>
             </View>
           </TouchableOpacity>
-          <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>
+          {/* <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>
             John Doe
-          </Text>
+          </Text> */}
+        </View>
+        
+        <View style={styles.action}>
+          <FontAwesome name="user-o" color={colors.text} size={20} />
+          <TextInput
+            placeholder="Your Id number"
+            placeholderTextColor="#666666"
+            autoCorrect={false}
+            style={[
+              styles.textInput,
+              {
+                color: colors.text,
+              },
+            ]}
+            editable={false}
+          />
         </View>
 
         <View style={styles.action}>
           <FontAwesome name="user-o" color={colors.text} size={20} />
           <TextInput
-            placeholder="First Name"
+            placeholder="Your full name"
             placeholderTextColor="#666666"
             autoCorrect={false}
             style={[
@@ -153,7 +171,7 @@ const EditProfileScreen = () => {
             ]}
           />
         </View>
-        <View style={styles.action}>
+        {/* <View style={styles.action}>
           <FontAwesome name="user-o" color={colors.text} size={20} />
           <TextInput
             placeholder="Last Name"
@@ -166,7 +184,7 @@ const EditProfileScreen = () => {
               },
             ]}
           />
-        </View>
+        </View> */}
         <View style={styles.action}>
           <Feather name="phone" color={colors.text} size={20} />
           <TextInput
@@ -197,7 +215,7 @@ const EditProfileScreen = () => {
             ]}
           />
         </View>
-        <View style={styles.action}>
+        {/* <View style={styles.action}>
           <FontAwesome name="globe" color={colors.text} size={20} />
           <TextInput
             placeholder="Country"
@@ -210,11 +228,25 @@ const EditProfileScreen = () => {
               },
             ]}
           />
+        </View> */}
+        <View style={styles.action}>
+          <Icon name="gender-male" color={colors.text} size={20} />
+          <TextInput
+            placeholder="Gender"
+            placeholderTextColor="#666666"
+            autoCorrect={false}
+            style={[
+              styles.textInput,
+              {
+                color: colors.text,
+              },
+            ]}
+          />
         </View>
         <View style={styles.action}>
-          <Icon name="map-marker-outline" color={colors.text} size={20} />
+          <Icon name="cake-layered" color={colors.text} size={20} />
           <TextInput
-            placeholder="City"
+            placeholder="Day of birth"
             placeholderTextColor="#666666"
             autoCorrect={false}
             style={[
@@ -228,8 +260,8 @@ const EditProfileScreen = () => {
         <TouchableOpacity style={styles.commandButton} onPress={() => {}}>
           <Text style={styles.panelButtonTitle}>Submit</Text>
         </TouchableOpacity>
-      </Animated.View>
-    </View>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -242,7 +274,8 @@ const styles = StyleSheet.create({
   commandButton: {
     padding: 15,
     borderRadius: 10,
-    backgroundColor: '#FF6347',
+    // backgroundColor: '#FF6347',
+    backgroundColor: '#1BA9FF',
     alignItems: 'center',
     marginTop: 10,
   },

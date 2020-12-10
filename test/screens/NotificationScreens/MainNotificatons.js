@@ -22,7 +22,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-const HomeScreen = () => {
+const MainNotifications = () => {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text>Notification Screen.</Text>
@@ -30,4 +30,4 @@ const HomeScreen = () => {
       );
 }
 
-export default HomeScreen;
+export default MainNotifications;

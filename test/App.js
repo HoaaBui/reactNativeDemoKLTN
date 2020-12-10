@@ -31,9 +31,19 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import HomeScreen from './screens/HomeScreens/MainHome';
 import NotificationScreen from './screens/NotificationScreens/MainNotificatons';
 import ProfileScreen from './screens/ProfileScreens/MainProfiles';
+import EditProfileScreen from './screens/ProfileScreens/EditProfileScreens';
+
+import IntroduceScreen from './screens/ProfileScreens/IntroduceScreen';
+import HowToUseScreen from './screens/ProfileScreens/HowToUseScreen';
+import SettingsScreen from './screens/ProfileScreens/SettingsScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const HomeStack = createStackNavigator();
+const NotificationStack = createStackNavigator();
+const ProfileStack = createStackNavigator();
+
 
 const App: () => React$Node = () => {
   return (
@@ -70,10 +80,11 @@ const App: () => React$Node = () => {
 
         <Tab.Screen
           name="Profiles"
-          component={ProfileScreen}
+          component={ProfileStackScreen}
           options={{
             tabBarLabel: 'Profiles',
             tabBarColor: '#694fad',
+            // tabBarVisible: false, sử dụng biến truyền component con sang cha để gáng giá trị
             tabBarIcon: ({color}) => (
               <MaterialCommunityIcons name="account" color={color} size={26} />
             ),
@@ -81,6 +92,39 @@ const App: () => React$Node = () => {
         />
       </Tab.Navigator>
     </NavigationContainer>
+  );
+
+};
+
+const ProfileStackScreen = () => {
+  return(
+    <ProfileStack.Navigator>
+      <ProfileStack.Screen
+        options={{headerShown: false}}
+        name="Profile"
+        component={ProfileScreen}
+      />
+
+      <ProfileStack.Screen
+        name="Edit Profile"
+        component={EditProfileScreen}
+      />
+
+      <ProfileStack.Screen
+        name="Introduce"
+        component={IntroduceScreen}
+      />
+
+      <ProfileStack.Screen
+        name="How to use"
+        component={HowToUseScreen}
+      />
+
+      <ProfileStack.Screen
+        name="Settings"
+        component={SettingsScreen}
+      />
+    </ProfileStack.Navigator>
   );
 };
 
