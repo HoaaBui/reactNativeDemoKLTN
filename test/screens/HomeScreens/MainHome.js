@@ -51,8 +51,15 @@ const HomeScreen = () => {
               </View>
             </View>
 
-            <View>
-                <Text style={{color:'#777777'}}>News</Text>
+            <View style={{paddingLeft:10}}>
+                <Text style={{fontSize:20, fontWeight:'bold', marginTop:5}}>News</Text>
+                <View style={{marginTop:10}}>
+                  <Image
+                      source={require('./Transportation.jpg')}
+                      style={{width:160, height:80}}
+                      />
+                  <Text style={{fontSize:14, fontWeight:'bold', color:'#777777', width:160}}>adfadfasdfasfdasdfasfdasdfasdf</Text>
+                </View>
             </View>
             
         </ScrollView>
