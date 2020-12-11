@@ -84,7 +84,7 @@ const App: () => React$Node = () => {
           options={{
             tabBarLabel: 'Profiles',
             tabBarColor: '#694fad',
-            // tabBarVisible: false, sử dụng biến truyền component con sang cha để gáng giá trị
+            // tabBarVisible: false, sử dụng biến truyền component con sang cha để gán giá trị
             tabBarIcon: ({color}) => (
               <MaterialCommunityIcons name="account" color={color} size={26} />
             ),

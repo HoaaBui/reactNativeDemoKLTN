@@ -38,12 +38,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const MainProfilesScreen = ({navigation}) => {
     return (
-        // <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        //   <Text>Profile Screen.</Text>
-        // </View>
-      
       <SafeAreaView style={styles.container}>
-
         <View style={styles.userInfoSection}>
           <View style={{flexDirection: 'row', marginTop: 15}}>
             <Avatar.Image 
@@ -115,12 +110,6 @@ const MainProfilesScreen = ({navigation}) => {
               <Text style={styles.menuItemText}>Settings</Text>
             </View>
           </TouchableRipple>
-          {/* <TouchableRipple>
-            <View style={styles.menuItem}>
-              <Icon name="account-check-outline" color="#1BA9FF" size={25}/>
-              <Text style={styles.menuItemText}>Support</Text>
-            </View>
-          </TouchableRipple> */}
         </View>
       </SafeAreaView>
     );
