@@ -37,6 +37,9 @@ import IntroduceScreen from './screens/ProfileScreens/IntroduceScreen';
 import HowToUseScreen from './screens/ProfileScreens/HowToUseScreen';
 import SettingsScreen from './screens/ProfileScreens/SettingsScreen';
 
+import CreateOrderScreen from './screens/HomeScreens/CreateOrdersScreen';
+import YourOrderScreen from './screens/HomeScreens/YourOrdersScreen';
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -56,7 +59,7 @@ const App: () => React$Node = () => {
       }}>
         <Tab.Screen
           name="Feed"
-          component={HomeScreen}
+          component={HomeStackScreen}
           options={{
             tabBarLabel: 'Home',
             tabBarColor: '#694fad',
@@ -123,6 +126,28 @@ const ProfileStackScreen = () => {
       <ProfileStack.Screen
         name="Settings"
         component={SettingsScreen}
+      />
+    </ProfileStack.Navigator>
+  );
+};
+
+const HomeStackScreen = () => {
+  return(
+    <ProfileStack.Navigator>
+      <ProfileStack.Screen
+        options={{headerShown: false}}
+        name="Home"
+        component={HomeScreen}
+      />
+
+      <ProfileStack.Screen
+        name="Create Order"
+        component={CreateOrderScreen}
+      />
+
+      <ProfileStack.Screen
+        name="Your Orders"
+        component={YourOrderScreen}
       />
     </ProfileStack.Navigator>
   );

@@ -22,7 +22,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Image } from 'react-native';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Image
@@ -36,12 +36,12 @@ const HomeScreen = () => {
               
             <View style={styles.container_featureList}>
               <View style={styles.featureItem}>
-                <MaterialCommunityIcons name="plus-circle-outline" color="#1BA9FF" size={45} />
+                <MaterialCommunityIcons name="plus-circle-outline" color="#1BA9FF" size={45} onPress={() => navigation.navigate('Create Order')}  />
                 <Text style={styles.text}>Create orders</Text>
               </View>
               
               <View style={styles.featureItem}>
-                <MaterialCommunityIcons name="package-variant-closed" color="#1BA9FF" size={45} />
+                <MaterialCommunityIcons name="package-variant-closed" color="#1BA9FF" size={45} onPress={() => navigation.navigate('Your Orders')} />
                 <Text style={styles.text}>Your orders</Text>
               </View>
 

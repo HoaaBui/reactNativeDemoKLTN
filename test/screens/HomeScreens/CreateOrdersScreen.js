@@ -1,33 +1,298 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
   View,
   Text,
-  StatusBar,
+  TouchableOpacity,
+  ImageBackground,
+  TextInput,
+  StyleSheet,
+  ScrollView,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {useTheme} from 'react-native-paper';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Feather from 'react-native-vector-icons/Feather';
 
+//import BottomSheet from 'reanimated-bottom-sheet';
+// import Animated from 'react-native-reanimated';
 
-const CreateOrdersScreen = () => {
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text>Create Orders Screen.</Text>
+//import ImagePicker from 'react-native-image-crop-picker';
+
+const CreateOrderScreen = () => {
+
+  const [image, setImage] = useState('https://api.adorable.io/avatars/80/abott@adorable.png');
+  const {colors} = useTheme();
+
+  const takePhotoFromCamera = () => {
+    // ImagePicker.openCamera({
+    //   compressImageMaxWidth: 300,
+    //   compressImageMaxHeight: 300,
+    //   cropping: true,
+    //   compressImageQuality: 0.7
+    // }).then(image => {
+    //   console.log(image);
+    //   setImage(image.path);
+    //   this.bs.current.snapTo(1);
+    // });
+  }
+
+  const choosePhotoFromLibrary = () => {
+    // ImagePicker.openPicker({
+    //   width: 300,
+    //   height: 300,
+    //   cropping: true,
+    //   compressImageQuality: 0.7
+    // }).then(image => {
+    //   console.log(image);
+    //   setImage(image.path);
+    //   this.bs.current.snapTo(1);
+    // });
+  }
+
+  renderInner = () => (
+    <View style={styles.panel}>
+      <View style={{alignItems: 'center'}}>
+        <Text style={styles.panelTitle}>Upload Photo</Text>
+        <Text style={styles.panelSubtitle}>Choose Your Profile Picture</Text>
+      </View>
+      <TouchableOpacity style={styles.panelButton} onPress={takePhotoFromCamera}>
+        <Text style={styles.panelButtonTitle}>Take Photo</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.panelButton} onPress={choosePhotoFromLibrary}>
+        <Text style={styles.panelButtonTitle}>Choose From Library</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.panelButton}
+        onPress={() => this.bs.current.snapTo(1)}>
+        <Text style={styles.panelButtonTitle}>Cancel</Text>
+      </TouchableOpacity>
+    </View>
+  );
+
+  renderHeader = () => (
+    <View style={styles.header}>
+      <View style={styles.panelHeader}>
+        <View style={styles.panelHandle} />
+      </View>
+    </View>
+  );
+
+  bs = React.createRef();
+
+  return (
+    <ScrollView style={styles.container}>
+      <View style={{height:50, justifyContent:'center', marginLeft:3}}><Text style={{fontSize:16, color: '#666666'}}>SENDER - RECEIVER</Text></View>
+      <View style={{paddingLeft:10, backgroundColor:'#ffff'}}>
+        <Text style={{fontSize:16, color: '#1BA9FF', marginBottom:5}}>Sender</Text>
+        <Text style={{marginBottom:10}}>Hoa Bui Gia</Text>
+        <Text style={{fontSize:16, color: '#1BA9FF', paddingBottom:5}}>Receiver</Text>
+        <View style={styles.action}>
+          <Feather name="phone" color={colors.text} size={16} />
+          <TextInput
+            placeholder="Phone"
+            placeholderTextColor="#666666"
+            keyboardType="number-pad"
+            autoCorrect={false}
+            style={[
+              styles.textInput,
+              {
+                color: colors.text,
+              },
+            ]}
+          />
         </View>
-      );
-}
+        <View style={styles.action}>
+          <FontAwesome name="user-o" color={colors.text} size={16} />
+          <TextInput
+            placeholder="Your full name"
+            placeholderTextColor="#666666"
+            autoCorrect={false}
+            style={[
+              styles.textInput,
+              {
+                color: colors.text,
+              },
+            ]}
+          />
+        </View>
+        <View style={styles.action}>
+        <Feather name="map-pin" color={colors.text} size={16} />
+          <TextInput
+            placeholder="Address"
+            placeholderTextColor="#666666"
+            autoCorrect={false}
+            style={[
+              styles.textInput,
+              {
+                color: colors.text,
+              },
+            ]}
+          />
+        </View>
+      </View>
+      
+      <View style={{height:50, justifyContent:'center', marginLeft:3}}><Text style={{fontSize:16, color: '#666666'}}>ITEMS - SERVICES</Text></View>
+      <View style={{paddingLeft:10, backgroundColor:'#ffff', paddingBottom:5}}>
+        <Text style={{fontSize:16, color: '#1BA9FF', paddingBottom:5}}>Items</Text>
+        <View style={styles.action}>
+          <Feather name="info" color={colors.text} size={16} />
+          <TextInput
+            placeholder="Items description"
+            placeholderTextColor="#666666"
+            keyboardType="number-pad"
+            autoCorrect={false}
+            style={[
+              styles.textInput,
+              {
+                color: colors.text,
+              },
+            ]}
+          />
+        </View>
+        <View style={styles.action}>
+          <Feather name="dollar-sign" color={colors.text} size={16} />
+          <TextInput
+            placeholder="Value of goods"
+            placeholderTextColor="#666666"
+            autoCorrect={false}
+            style={[
+              styles.textInput,
+              {
+                color: colors.text,
+              },
+            ]}
+          />
+        </View>
 
-export default CreateOrdersScreen;
+        <View style={{flex:1, alignItems:'center', justifyContent:'space-between', flexDirection:'row', paddingRight:5, paddingBottom:5}}>
+        <Text style={{fontSize:16, color: '#1BA9FF', paddingBottom:5}}>Services</Text>
+        <Text style={{fontSize:14, color: '#FD8209', paddingBottom:5}}>Choose your services</Text>
+        </View>
+        <Text>The service that you choose is Express Delivery.</Text>
+      </View>
+
+      <View style={{height:50, justifyContent:'center', marginLeft:3}}><Text style={{fontSize:16, color: '#666666'}}>BACKGROUND INFORMATION</Text></View>
+      <View style={{paddingLeft:10, backgroundColor:'#ffff', paddingBottom:5}}>
+        {/* <Text style={{marginBottom:5}}>Delivery time: All days long</Text> */}
+        <View style={{flex:1, alignItems:'center', justifyContent:'space-between', flexDirection:'row', paddingRight:5, paddingBottom:5}}>
+        <Text style={{fontSize:14, color: '#000000', paddingBottom:5}}>Delivery time: All days long</Text>
+        <Text style={{fontSize:14, color: '#FD8209', paddingBottom:5}}>Update</Text>
+        </View>
+        <View style={{flex:1, alignItems:'center', justifyContent:'space-between', flexDirection:'row', paddingRight:5, paddingBottom:5}}>
+        <Text style={{fontSize:14, color: '#000000', paddingBottom:5}}>Note: Dont't slam the door!</Text>
+        <Text style={{fontSize:14, color: '#FD8209', paddingBottom:5}}>Update</Text>
+        </View>
+        <Text>Total price: 135.000 VND</Text>
+      </View>
+      
+      <TouchableOpacity style={styles.commandButton} onPress={() => {}}>
+          <Text style={styles.panelButtonTitle}>Create An Order</Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
+};
+
+export default CreateOrderScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  commandButton: {
+    padding: 15,
+    borderRadius: 10,
+    // backgroundColor: '#FF6347',
+    backgroundColor: '#1BA9FF',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  panel: {
+    padding: 20,
+    backgroundColor: '#FFFFFF',
+    paddingTop: 20,
+    // borderTopLeftRadius: 20,
+    // borderTopRightRadius: 20,
+    // shadowColor: '#000000',
+    // shadowOffset: {width: 0, height: 0},
+    // shadowRadius: 5,
+    // shadowOpacity: 0.4,
+  },
+  header: {
+    backgroundColor: '#FFFFFF',
+    shadowColor: '#333333',
+    shadowOffset: {width: -1, height: -3},
+    shadowRadius: 2,
+    shadowOpacity: 0.4,
+    // elevation: 5,
+    paddingTop: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  panelHeader: {
+    alignItems: 'center',
+  },
+  panelHandle: {
+    width: 40,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#00000040',
+    marginBottom: 10,
+  },
+  panelTitle: {
+    fontSize: 27,
+    height: 35,
+  },
+  panelSubtitle: {
+    fontSize: 14,
+    color: 'gray',
+    height: 30,
+    marginBottom: 10,
+  },
+  panelButton: {
+    padding: 13,
+    borderRadius: 10,
+    backgroundColor: '#FF6347',
+    alignItems: 'center',
+    marginVertical: 7,
+  },
+  panelButtonTitle: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  action: {
+    flexDirection: 'row',
+    // marginTop: 3,
+    // marginBottom: 3,
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    borderRightWidth: 1,
+    borderLeftWidth: 1,
+    borderBottomColor: '#f2f2f2',
+    borderTopColor: '#f2f2f2',
+    borderRightColor: '#f2f2f2',
+    borderLeftColor: '#f2f2f2',
+    // paddingBottom: 5,
+    alignItems:'center',
+    marginBottom:5,
+    marginRight:10,
+    paddingLeft:5,
+    borderRadius:10,
+    height:40,
+  },
+  actionError: {
+    flexDirection: 'row',
+    marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#FF0000',
+    paddingBottom: 5,
+  },
+  textInput: {
+    flex: 1,
+    // marginTop: Platform.OS === 'ios' ? 0 : -12,
+    // paddingLeft: 10,
+    color: '#05375a',
+  },
+});
