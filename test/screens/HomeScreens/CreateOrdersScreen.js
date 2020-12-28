@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useMemo} from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   TextInput,
   StyleSheet,
   ScrollView,
+  Button,
 } from 'react-native';
 
 import {useTheme} from 'react-native-paper';
@@ -22,7 +23,9 @@ import Feather from 'react-native-vector-icons/Feather';
 
 import BottomSheet from 'react-native-js-bottom-sheet';
 
-const CreateOrderScreen = () => {
+import UserContext from './UserContext';
+
+const CreateOrderScreen = ({navigation}) => {
 
   const [image, setImage] = useState('https://api.adorable.io/avatars/80/abott@adorable.png');
   const {colors} = useTheme();
@@ -125,12 +128,23 @@ const CreateOrderScreen = () => {
 
   bs = React.createRef();
 
+  const [valueforContext, setValueforContext] = useContext(UserContext);
   return (
+    // <View>
+    //   <Text>{valueforContext.name}</Text>
+    //   <Button title='updateName' onPress={() => setValueforContext({name : 'adfasdfadsf'})}></Button>
+    // </View>
     <ScrollView style={styles.container}>
       <View style={{height:50, justifyContent:'center', marginLeft:3}}><Text style={{fontSize:16, color: '#666666'}}>SENDER - RECEIVER</Text></View>
       <View style={{paddingLeft:10, backgroundColor:'#ffff'}}>
         <Text style={{fontSize:16, color: '#1BA9FF', marginBottom:5}}>Sender</Text>
-        <Text style={{marginBottom:10}}>Hoa Bui Gia</Text>
+        {/* <Text style={{marginBottom:10}}>Hoa Bui Gia</Text> */}
+
+        <View style={{flex:1, alignItems:'center', justifyContent:'space-between', flexDirection:'row', paddingRight:5, paddingBottom:5}}>
+          <Text style={{fontSize:14, color: '#000000', paddingBottom:5}}>Hoa Bui Gia</Text>
+          <Text style={{fontSize:14, color: '#FD8209', paddingBottom:5}} onPress={() => navigation.navigate('Update Location Delivery')}>Update</Text>
+        </View>
+
         <Text style={{fontSize:16, color: '#1BA9FF', paddingBottom:5}}>Receiver</Text>
         <View style={styles.action}>
           <Feather name="phone" color={colors.text} size={16} />

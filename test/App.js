@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState, useMemo} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -40,6 +40,9 @@ import SettingsScreen from './screens/ProfileScreens/SettingsScreen';
 import CreateOrderScreen from './screens/HomeScreens/CreateOrdersScreen';
 import YourOrderScreen from './screens/HomeScreens/YourOrdersScreen';
 
+import UserContext from './screens/HomeScreens/UserContext';
+import UpdateLocationDelivery from './screens/HomeScreens/UpdateLocationDelivery'
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -49,6 +52,74 @@ const ProfileStack = createStackNavigator();
 
 
 const App: () => React$Node = () => {
+
+  const ProfileStackScreen = () => {
+    return(
+        <ProfileStack.Navigator>
+          <ProfileStack.Screen
+            options={{headerShown: false}}
+            name="Profile"
+            component={ProfileScreen}
+          />
+  
+          <ProfileStack.Screen
+            name="Edit Profile"
+            component={EditProfileScreen}
+          />
+  
+          <ProfileStack.Screen
+            name="Introduce"
+            component={IntroduceScreen}
+          />
+  
+          <ProfileStack.Screen
+            name="How to use"
+            component={HowToUseScreen}
+          />
+  
+          <ProfileStack.Screen
+            name="Settings"
+            component={SettingsScreen}
+          />
+        </ProfileStack.Navigator>
+    );
+  };
+  
+  const [valueforContext, setValueforContext] = useState({
+    name: 'Bui Gia Hoa',
+    address: '20 Le Truc Street, Ward 7, Binh Thanh District, Ho Chi Minh',
+    phoneNumber: '0902733275',
+  });
+  
+  const HomeStackScreen = () => {
+    return(
+      <UserContext.Provider value={[valueforContext, setValueforContext]}>
+        <ProfileStack.Navigator>
+          <ProfileStack.Screen
+            options={{headerShown: false}}
+            name="Home"
+            component={HomeScreen}
+          />
+    
+          <ProfileStack.Screen
+            name="Create Order"
+            component={CreateOrderScreen}
+          />
+    
+          <ProfileStack.Screen
+            name="Your Orders"
+            component={YourOrderScreen}
+          />
+
+          <ProfileStack.Screen
+            name="Update Location Delivery"
+            component={UpdateLocationDelivery}
+          />
+        </ProfileStack.Navigator>
+      </UserContext.Provider>
+    );
+  };  
+
   return (
     <NavigationContainer style={{backgroundColor: '#694fad'}}>
       <Tab.Navigator
@@ -98,59 +169,4 @@ const App: () => React$Node = () => {
   );
 
 };
-
-const ProfileStackScreen = () => {
-  return(
-    <ProfileStack.Navigator>
-      <ProfileStack.Screen
-        options={{headerShown: false}}
-        name="Profile"
-        component={ProfileScreen}
-      />
-
-      <ProfileStack.Screen
-        name="Edit Profile"
-        component={EditProfileScreen}
-      />
-
-      <ProfileStack.Screen
-        name="Introduce"
-        component={IntroduceScreen}
-      />
-
-      <ProfileStack.Screen
-        name="How to use"
-        component={HowToUseScreen}
-      />
-
-      <ProfileStack.Screen
-        name="Settings"
-        component={SettingsScreen}
-      />
-    </ProfileStack.Navigator>
-  );
-};
-
-const HomeStackScreen = () => {
-  return(
-    <ProfileStack.Navigator>
-      <ProfileStack.Screen
-        options={{headerShown: false}}
-        name="Home"
-        component={HomeScreen}
-      />
-
-      <ProfileStack.Screen
-        name="Create Order"
-        component={CreateOrderScreen}
-      />
-
-      <ProfileStack.Screen
-        name="Your Orders"
-        component={YourOrderScreen}
-      />
-    </ProfileStack.Navigator>
-  );
-};
-
 export default App;
