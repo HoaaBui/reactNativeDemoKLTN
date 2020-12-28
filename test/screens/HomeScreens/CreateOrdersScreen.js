@@ -23,10 +23,8 @@ import Feather from 'react-native-vector-icons/Feather';
 
 import BottomSheet from 'react-native-js-bottom-sheet';
 
-import UserContext from './UserContext';
 
 const CreateOrderScreen = ({navigation}) => {
-
   const [image, setImage] = useState('https://api.adorable.io/avatars/80/abott@adorable.png');
   const {colors} = useTheme();
 
@@ -128,12 +126,7 @@ const CreateOrderScreen = ({navigation}) => {
 
   bs = React.createRef();
 
-  const [valueforContext, setValueforContext] = useContext(UserContext);
   return (
-    // <View>
-    //   <Text>{valueforContext.name}</Text>
-    //   <Button title='updateName' onPress={() => setValueforContext({name : 'adfasdfadsf'})}></Button>
-    // </View>
     <ScrollView style={styles.container}>
       <View style={{height:50, justifyContent:'center', marginLeft:3}}><Text style={{fontSize:16, color: '#666666'}}>SENDER - RECEIVER</Text></View>
       <View style={{paddingLeft:10, backgroundColor:'#ffff'}}>
