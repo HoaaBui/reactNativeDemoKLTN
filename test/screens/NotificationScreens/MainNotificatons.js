@@ -10,14 +10,14 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const MainNotifications = () => {
   const [people, setPeople] = useState([
-    {id:1, title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
-    {id:2, title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
-    {id:3, title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
-    {id:4, title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
-    {id:5, title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
-    {id:6, title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
-    {id:7, title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
-    {id:8, title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
+    {id:'1', title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
+    {id:'2', title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
+    {id:'3', title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
+    {id:'4', title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
+    {id:'5', title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
+    {id:'6', title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
+    {id:'7', title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
+    {id:'8', title:'Delivery orders success', date:'11/1/2020', description:'Your order was delivered successfully.', iconType:'info'},
   ]);
   
   return (

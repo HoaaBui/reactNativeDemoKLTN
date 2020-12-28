@@ -131,8 +131,6 @@ const CreateOrderScreen = ({navigation}) => {
       <View style={{height:50, justifyContent:'center', marginLeft:3}}><Text style={{fontSize:16, color: '#666666'}}>SENDER - RECEIVER</Text></View>
       <View style={{paddingLeft:10, backgroundColor:'#ffff'}}>
         <Text style={{fontSize:16, color: '#1BA9FF', marginBottom:5}}>Sender</Text>
-        {/* <Text style={{marginBottom:10}}>Hoa Bui Gia</Text> */}
-
         <View style={{flex:1, alignItems:'center', justifyContent:'space-between', flexDirection:'row', paddingRight:5, paddingBottom:5}}>
           <Text style={{fontSize:14, color: '#000000', paddingBottom:5}}>Hoa Bui Gia</Text>
           <Text style={{fontSize:14, color: '#FD8209', paddingBottom:5}} onPress={() => navigation.navigate('Update Location Delivery')}>Update</Text>
