@@ -40,6 +40,7 @@ import SettingsScreen from './screens/ProfileScreens/SettingsScreen';
 import CreateOrderScreen from './screens/HomeScreens/CreateOrdersScreen';
 import YourOrderScreen from './screens/HomeScreens/YourOrdersScreen';
 import YourOrderDetailScreen from './screens/HomeScreens/YourOrderDetailScreen';
+import YourOrderDetailDeliveryStatusScreen from './screens/HomeScreens/YourOrderDetailDeliveryStatusScreen';
 
 import UserContext from './screens/HomeScreens/UserContext';
 import UpdateLocationDelivery from './screens/HomeScreens/UpdateLocationDelivery'
@@ -115,6 +116,11 @@ const App: () => React$Node = () => {
           <ProfileStack.Screen
             name="Your Order Detail Screen"
             component={YourOrderDetailScreen}
+          />
+
+          <ProfileStack.Screen
+            name="Your Order Detail Delivery Status Screen"
+            component={YourOrderDetailDeliveryStatusScreen}
           />
 
           <ProfileStack.Screen
