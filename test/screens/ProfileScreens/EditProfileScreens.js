@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -14,6 +14,7 @@ import {useTheme} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
+import UserContext from './UserContext';
 
 //import BottomSheet from 'reanimated-bottom-sheet';
 // import Animated from 'react-native-reanimated';
@@ -81,6 +82,16 @@ const EditProfileScreen = () => {
 
   bs = React.createRef();
   // fall = new Animated.Value(1);
+  
+  const [valueforContext, setValueforContext] = useContext(UserContext);
+  const [userInfo, setUserInfo] = useState({
+    orderId: '',
+    name: '',
+    phoneNumber: '',
+    email: '',
+    gender: '',
+    dayofBirth: '',
+  });
 
   return (
     <ScrollView style={styles.container}>
@@ -136,9 +147,6 @@ const EditProfileScreen = () => {
               </ImageBackground>
             </View>
           </TouchableOpacity>
-          {/* <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>
-            John Doe
-          </Text> */}
         </View>
         
         <View style={styles.action}>
@@ -154,6 +162,7 @@ const EditProfileScreen = () => {
               },
             ]}
             editable={false}
+            defaultValue={valueforContext.customerId}
           />
         </View>
 
@@ -169,22 +178,12 @@ const EditProfileScreen = () => {
                 color: colors.text,
               },
             ]}
+            defaultValue={valueforContext.name}
+            onChangeText={(text) => {
+              setUserInfo({name: text})
+            }}
           />
         </View>
-        {/* <View style={styles.action}>
-          <FontAwesome name="user-o" color={colors.text} size={20} />
-          <TextInput
-            placeholder="Last Name"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-          />
-        </View> */}
         <View style={styles.action}>
           <Feather name="phone" color={colors.text} size={20} />
           <TextInput
@@ -198,6 +197,10 @@ const EditProfileScreen = () => {
                 color: colors.text,
               },
             ]}
+            defaultValue={valueforContext.phoneNumber}
+            onChangeText={(text) => {
+              setUserInfo({phoneNumber: text})
+            }}
           />
         </View>
         <View style={styles.action}>
@@ -213,22 +216,12 @@ const EditProfileScreen = () => {
                 color: colors.text,
               },
             ]}
+            defaultValue={valueforContext.email}
+            onChangeText={(text) => {
+              setUserInfo({email: text})
+            }}
           />
         </View>
-        {/* <View style={styles.action}>
-          <FontAwesome name="globe" color={colors.text} size={20} />
-          <TextInput
-            placeholder="Country"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-          />
-        </View> */}
         <View style={styles.action}>
           <Icon name="gender-male" color={colors.text} size={20} />
           <TextInput
@@ -241,6 +234,10 @@ const EditProfileScreen = () => {
                 color: colors.text,
               },
             ]}
+            defaultValue={valueforContext.gender}
+            onChangeText={(text) => {
+              setUserInfo({gender: text})
+            }}
           />
         </View>
         <View style={styles.action}>
@@ -255,6 +252,10 @@ const EditProfileScreen = () => {
                 color: colors.text,
               },
             ]}
+            defaultValue={valueforContext.dayofBirth}
+            onChangeText={(text) => {
+              setUserInfo({dayofBirth: text})
+            }}
           />
         </View>
         <TouchableOpacity style={styles.commandButton} onPress={() => {}}>

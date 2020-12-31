@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   // SafeAreaView,
   // StyleSheet,
@@ -7,20 +7,6 @@ import {
   // Text,
   // StatusBar,
 } from 'react-native';
-
-// import {
-//   Header,
-//   LearnMoreLinks,
-//   Colors,
-//   DebugInstructions,
-//   ReloadInstructions,
-// } from 'react-native/Libraries/NewAppScreen';
-
-// import { NavigationContainer } from '@react-navigation/native';
-// import { createStackNavigator } from '@react-navigation/stack';
-// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import {View, SafeAreaView, StyleSheet} from 'react-native';
 import {
   Avatar,
@@ -29,14 +15,11 @@ import {
   Text,
   TouchableRipple,
 } from 'react-native-paper';
-
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-// import Share from 'react-native-share';
-
-// import files from '../assets/filesBase64';
+import UserContext from './UserContext';
 
 const MainProfilesScreen = ({navigation}) => {
+  const [valueforContext, setValueforContext] = useContext(UserContext);
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.userInfoSection}>
@@ -60,16 +43,16 @@ const MainProfilesScreen = ({navigation}) => {
         <View style={styles.userInfoSection}>
           <View style={styles.row}>
             <Icon name="account" color="#777777" size={20}/>
-            <Text style={{color:"#777777", marginLeft: 20, marginRight: 10}}>123456789</Text>
+            <Text style={{color:"#777777", marginLeft: 20, marginRight: 10}}>{valueforContext.name}</Text>
           </View>
           <View style={styles.row}>
             <Icon name="phone" color="#777777" size={20}/>
-            <Text style={{color:"#777777", marginLeft: 20, marginRight: 10}}>+91-900000009</Text>
+            <Text style={{color:"#777777", marginLeft: 20, marginRight: 10}}>{valueforContext.phoneNumber}</Text>
             <Icon name="lead-pencil" color="#1BA9FF" size={16} onPress={() => navigation.navigate('Edit Profile')} />
           </View>
           <View style={styles.row}>
             <Icon name="email" color="#777777" size={20}/>
-            <Text style={{color:"#777777", marginLeft: 20, marginRight: 10}}>john_doe@email.com</Text>
+            <Text style={{color:"#777777", marginLeft: 20, marginRight: 10}}>{valueforContext.email}</Text>
             <Icon name="lead-pencil" color="#1BA9FF" size={16} onPress={() => navigation.navigate('Edit Profile')} />
           </View>
         </View>
@@ -103,7 +86,6 @@ const MainProfilesScreen = ({navigation}) => {
             </View>
           </TouchableRipple>
           
-          {/* <TouchableRipple onPress={myCustomShare}> */}
           <TouchableRipple onPress={()=>{navigation.navigate('Settings')}}>
             <View style={styles.menuItem}>
               <Icon name="cog-outline" color="#1BA9FF" size={25}/>

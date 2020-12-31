@@ -22,7 +22,7 @@ import Feather from 'react-native-vector-icons/Feather';
 //import ImagePicker from 'react-native-image-crop-picker';
 
 import BottomSheet from 'react-native-js-bottom-sheet';
-
+import UserContext from './UserContext';
 
 const CreateOrderScreen = ({navigation}) => {
   const [image, setImage] = useState('https://api.adorable.io/avatars/80/abott@adorable.png');
@@ -41,6 +41,8 @@ const CreateOrderScreen = ({navigation}) => {
     {id:2, title:'Money-saving Delivery', timeDelivery:'7-9 days', price:'40.000 VND'},
     {id:3, title:'Normal Delivery', timeDelivery:'3-5 days', price:'6000 VND'},
   ]);
+
+  const [valueforContext, setValueforContext] = useContext(UserContext);
 
   const takePhotoFromCamera = () => {
     // ImagePicker.openCamera({
@@ -132,7 +134,7 @@ const CreateOrderScreen = ({navigation}) => {
       <View style={{paddingLeft:10, backgroundColor:'#ffff'}}>
         <Text style={{fontSize:16, color: '#1BA9FF', marginBottom:5}}>Sender</Text>
         <View style={{flex:1, alignItems:'center', justifyContent:'space-between', flexDirection:'row', paddingRight:5, paddingBottom:5}}>
-          <Text style={{fontSize:14, color: '#000000', paddingBottom:5}}>Hoa Bui Gia</Text>
+          <Text style={{fontSize:14, color: '#000000', paddingBottom:5}}>{valueforContext.name}</Text>
           <Text style={{fontSize:14, color: '#FD8209', paddingBottom:5}} onPress={() => navigation.navigate('Update Location Delivery')}>Update</Text>
         </View>
 

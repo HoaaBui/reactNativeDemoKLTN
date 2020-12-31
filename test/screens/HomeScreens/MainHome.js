@@ -36,8 +36,8 @@ const HomeScreen = ({navigation}) => {
               
             <View style={styles.container_featureList}>
               <View style={styles.featureItem}>
-                <MaterialCommunityIcons name="plus-circle-outline" color="#1BA9FF" size={45} onPress={() => navigation.navigate('Create Order')}  />
-                <Text style={styles.text}>Create orders</Text>
+                <MaterialCommunityIcons name="plus-circle-outline" color="#1BA9FF" size={45} onPress={() => navigation.navigate('Create An Order')}  />
+                <Text style={styles.text}>Create order</Text>
               </View>
               
               <View style={styles.featureItem}>

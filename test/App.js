@@ -43,7 +43,8 @@ import YourOrderDetailScreen from './screens/HomeScreens/YourOrderDetailScreen';
 import YourOrderDetailDeliveryStatusScreen from './screens/HomeScreens/YourOrderDetailDeliveryStatusScreen';
 
 import UserContext from './screens/HomeScreens/UserContext';
-import UpdateLocationDelivery from './screens/HomeScreens/UpdateLocationDelivery'
+import UserContextProfile from './screens/ProfileScreens/UserContext';
+import UpdateLocationDelivery from './screens/HomeScreens/UpdateLocationDelivery';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -57,6 +58,7 @@ const App: () => React$Node = () => {
 
   const ProfileStackScreen = () => {
     return(
+      <UserContextProfile.Provider value={[valueforContext, setValueforContext]}>
         <ProfileStack.Navigator>
           <ProfileStack.Screen
             options={{headerShown: false}}
@@ -84,6 +86,7 @@ const App: () => React$Node = () => {
             component={SettingsScreen}
           />
         </ProfileStack.Navigator>
+      </UserContextProfile.Provider>
     );
   };
   
@@ -91,6 +94,10 @@ const App: () => React$Node = () => {
     name: 'Bui Gia Hoa',
     address: '20 Le Truc Street, Ward 7, Binh Thanh District, Ho Chi Minh',
     phoneNumber: '0902733275',
+    customerId: '123456789',
+    email: 'hoa199297@gmail.com',
+    gender: 'Male',
+    dayofBirth: '29/7/1998',
   });
   
   const HomeStackScreen = () => {
@@ -104,7 +111,7 @@ const App: () => React$Node = () => {
           />
     
           <ProfileStack.Screen
-            name="Create Order"
+            name="Create An Order"
             component={CreateOrderScreen}
           />
     
