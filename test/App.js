@@ -94,7 +94,7 @@ const App: () => React$Node = () => {
     name: 'Bui Gia Hoa',
     address: '20 Le Truc Street, Ward 7, Binh Thanh District, Ho Chi Minh',
     phoneNumber: '0902733275',
-    customerId: '123456789',
+    customerId: '025858945',
     email: 'hoa199297@gmail.com',
     gender: 'Male',
     dayofBirth: '29/7/1998',

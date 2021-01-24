@@ -6,7 +6,9 @@ import {
   FlatList
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import IconFeather from 'react-native-vector-icons/Feather';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {Card} from 'react-native-shadow-cards';
 
 const MainNotifications = () => {
   const [people, setPeople] = useState([
@@ -26,17 +28,21 @@ const MainNotifications = () => {
       keyExtractor={(item) => item.id}
       data={people}
       renderItem={({item})=> (
-        <View style={styles.taskItem}>
-          <View style={styles.taskItemHeader}>
-            <View>
-              <Icon name="information" color="#1BA9FF" size={25}/>
-            </View>
-            <View style={{paddingLeft:10}}>
-              <Text style={{fontSize:18, fontWeight:'bold'}}>{item.title}</Text>
-              <Text style={{fontSize:11, color:"#777777"}}>{item.date}</Text>
-            </View>
-          </View>
-          <Text style={{fontSize:16, color:"#777777"}}>{item.description}</Text>
+        <View style={styles.taskItemContainer}>
+            <Card style={styles.taskItem}>
+              <View style={styles.taskItemHeader}>
+                <View style={[styles.IconWrapAccountContent, {
+                  backgroundColor: '#F5A623',
+                }]}>
+                  <IconFeather name="gift" color="#FFFFFF" size={20}/>
+                </View>
+                <View style={{paddingLeft: 10}}>
+                  <Text style={{fontSize:18, fontWeight:'700', color:'#1BA9FF'}}>{item.title}</Text>
+                  <Text style={{fontSize:11, color:"#777777"}}>{item.date}</Text>
+                </View>
+              </View>
+              <Text style={{fontSize:16, color:"#777777"}}>{item.description}</Text>
+            </Card>
         </View>
       )}
     />
@@ -47,22 +53,49 @@ const styles = StyleSheet.create({
   taskList:{
     flex:1,
     flexDirection:'column',
-    paddingLeft:10,
+    backgroundColor: "#FFFFFF",
   },
 
-  taskItem:{
-    justifyContent:'space-between',
-    alignItems:'flex-start',
-    paddingTop:10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#777777',
+  taskItemContainer:{
+    // justifyContent:'space-between',
+    // alignItems:'flex-start',
+    // paddingTop:10,
+    // borderBottomWidth: 1,
+    // borderBottomColor: '#777777',
     paddingBottom:5,
+    width: '100%',
+    alignItems: 'center'
+  },
+
+  taskItem: {
+    width: '95%',
+    padding: 10,
+    borderColor: '#777777',
+    borderWidth: 0.5,
+    margin: 5,
+    marginTop: 15,
+    borderRadius: 5,
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    shadowColor:'#777777',
+    shadowOffset: {width:1, height:1},
   },
 
   taskItemHeader:{
-    justifyContent:'space-between',
-    alignItems:'flex-start',
-    flexDirection:'row',
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+  },
+
+  IconWrapAccountContent: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ffffff',
+    minWidth: 30,
+    minHeight: 30,
+    borderRadius: 60,
   },
 });
 

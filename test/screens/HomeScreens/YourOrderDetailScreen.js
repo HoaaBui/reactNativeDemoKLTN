@@ -88,14 +88,7 @@ const YourOrderDetailScreen = ({navigation}) => {
           <Image source={(require('./Transportation.jpg'))} style={{width:80, height:80, borderRadius:10}}/>
           <View style={{paddingLeft:20, justifyContent:'center'}}>
             <Text style={{fontSize:16, fontWeight:'bold', paddingBottom:10}}>clothes clothes clothes clothes</Text>
-            <Text style={{fontSize:14, color: '#666666'}}>85.000 VND</Text>
-          </View>
-        </View>
-        <View style={{paddingTop:10, paddingBottom:10, justifyContent:'flex-start', flexDirection:'row', paddingRight:10, backgroundColor:'#ffff', paddingLeft:8}}>
-          <Image source={(require('./Transportation.jpg'))} style={{width:80, height:80, borderRadius:10}}/>
-          <View style={{paddingLeft:20, justifyContent:'center'}}>
-            <Text style={{fontSize:16, fontWeight:'bold', paddingBottom:10}}>clothes clothes clothes clothes</Text>
-            <Text style={{fontSize:14, color: '#666666'}}>85.000 VND</Text>
+            <Text style={{fontSize:14, color: '#666666'}}>Pay by cash</Text>
           </View>
         </View>
       </View>
