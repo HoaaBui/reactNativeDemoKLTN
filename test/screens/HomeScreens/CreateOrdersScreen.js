@@ -2,31 +2,24 @@ import React, {useState, useContext, useMemo} from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
   ImageBackground,
   TextInput,
   StyleSheet,
   ScrollView,
   Button,
 } from 'react-native';
-
 import {useTheme} from 'react-native-paper';
-
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
-
-//import BottomSheet from 'reanimated-bottom-sheet';
-// import Animated from 'react-native-reanimated';
-
-//import ImagePicker from 'react-native-image-crop-picker';
-
-import BottomSheet from 'react-native-js-bottom-sheet';
+import {BottomPopup} from './BottomPopup';
 import UserContext from './UserContext';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const CreateOrderScreen = ({navigation}) => {
   const [image, setImage] = useState('https://api.adorable.io/avatars/80/abott@adorable.png');
   const {colors} = useTheme();
+  const [Title, setTitle] = useState('Test popup modal');
 
   const [deliveryTimeData, setDeliveryTimeData] = useState([
     {id:1, description:'Morning (7h30 -12h00)'},
@@ -44,94 +37,26 @@ const CreateOrderScreen = ({navigation}) => {
 
   const [valueforContext, setValueforContext] = useContext(UserContext);
 
-  const takePhotoFromCamera = () => {
-    // ImagePicker.openCamera({
-    //   compressImageMaxWidth: 300,
-    //   compressImageMaxHeight: 300,
-    //   cropping: true,
-    //   compressImageQuality: 0.7
-    // }).then(image => {
-    //   console.log(image);
-    //   setImage(image.path);
-    //   this.bs.current.snapTo(1);
-    // });
-  }
-
-  const choosePhotoFromLibrary = () => {
-    // ImagePicker.openPicker({
-    //   width: 300,
-    //   height: 300,
-    //   cropping: true,
-    //   compressImageQuality: 0.7
-    // }).then(image => {
-    //   console.log(image);
-    //   setImage(image.path);
-    //   this.bs.current.snapTo(1);
-    // });
-  }
-
-  let bottomSheetNote;
-  let bottomSheetDeliveryTime;
-  let bottomSheetServices;
+  let bottomSheetNote = React.createRef();
+  let bottomSheetDeliveryTime = React.createRef();
+  let bottomSheetServices = React.createRef();
  
   const _onPressButton = () => {
-    bottomSheetNote.open();
-  }
-
-  const _closeModal = () => {
-    bottomSheetNote.close();
+    bottomSheetNote.show();
   }
 
   const _onPressButtonDeliveryTime = () => {
-    bottomSheetDeliveryTime.open();
-  }
-
-  const _closeModalDeliveryTime = () => {
-    bottomSheetDeliveryTime.close();
+    bottomSheetDeliveryTime.show();
   }
 
   const _onPressButtonServices = () => {
-    bottomSheetServices.open();
+    bottomSheetServices.show();
   }
-
-  const _closeModalServices = () => {
-    bottomSheetServices.close();
-  }
-
-  renderInner = () => (
-    <View style={styles.panel}>
-      <View style={{alignItems: 'center'}}>
-        <Text style={styles.panelTitle}>Upload Photo</Text>
-        <Text style={styles.panelSubtitle}>Choose Your Profile Picture</Text>
-      </View>
-      <TouchableOpacity style={styles.panelButton} onPress={takePhotoFromCamera}>
-        <Text style={styles.panelButtonTitle}>Take Photo</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.panelButton} onPress={choosePhotoFromLibrary}>
-        <Text style={styles.panelButtonTitle}>Choose From Library</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.panelButton}
-        onPress={() => this.bs.current.snapTo(1)}>
-        <Text style={styles.panelButtonTitle}>Cancel</Text>
-      </TouchableOpacity>
-    </View>
-  );
-
-  renderHeader = () => (
-    <View style={styles.header}>
-      <View style={styles.panelHeader}>
-        <View style={styles.panelHandle} />
-      </View>
-    </View>
-  );
-
-  bs = React.createRef();
 
   return (
     <ScrollView style={styles.container}>
-      <View style={{height:50, justifyContent:'center', marginLeft:3}}><Text style={{fontSize:16, color: '#666666'}}>SENDER - RECEIVER</Text></View>
-      <View style={{paddingLeft:10, backgroundColor:'#ffff'}}>
+      <View style={{height:50, justifyContent:'center', marginLeft:8}}><Text style={{fontSize:16, color: '#666666'}}>SENDER - RECEIVER</Text></View>
+      <View style={{padding:8, backgroundColor:'#ffff'}}>
         <Text style={{fontSize:16, color: '#1BA9FF', marginBottom:5}}>Sender</Text>
         <View style={{flex:1, alignItems:'center', justifyContent:'space-between', flexDirection:'row', paddingRight:5, paddingBottom:5}}>
           <Text style={{fontSize:14, color: '#000000', paddingBottom:5}}>{valueforContext.name}</Text>
@@ -184,15 +109,14 @@ const CreateOrderScreen = ({navigation}) => {
         </View>
       </View>
       
-      <View style={{height:50, justifyContent:'center', marginLeft:3}}><Text style={{fontSize:16, color: '#666666'}}>ITEMS - SERVICES</Text></View>
-      <View style={{paddingLeft:10, backgroundColor:'#ffff', paddingBottom:5}}>
+      <View style={{height:50, justifyContent:'center', marginLeft:8}}><Text style={{fontSize:16, color: '#666666'}}>ITEMS - SERVICES</Text></View>
+      <View style={{padding:8, backgroundColor:'#ffff', paddingBottom:5}}>
         <Text style={{fontSize:16, color: '#1BA9FF', paddingBottom:5}}>Items</Text>
         <View style={styles.action}>
           <Feather name="info" color={colors.text} size={16} />
           <TextInput
             placeholder="Items description"
             placeholderTextColor="#666666"
-            keyboardType="number-pad"
             autoCorrect={false}
             style={[
               styles.textInput,
@@ -224,8 +148,8 @@ const CreateOrderScreen = ({navigation}) => {
         <Text>The service that you choose is Express Delivery.</Text>
       </View>
 
-      <View style={{height:50, justifyContent:'center', marginLeft:3}}><Text style={{fontSize:16, color: '#666666'}}>BACKGROUND INFORMATION</Text></View>
-      <View style={{paddingLeft:10, backgroundColor:'#ffff', paddingBottom:20}}>
+      <View style={{height:50, justifyContent:'center', marginLeft:8}}><Text style={{fontSize:16, color: '#666666'}}>BACKGROUND INFORMATION</Text></View>
+      <View style={{padding:8, backgroundColor:'#ffff', paddingBottom:20}}>
         <View style={{flex:1, alignItems:'center', justifyContent:'space-between', flexDirection:'row', paddingRight:5, paddingBottom:5}}>
         <Text style={{fontSize:14, color: '#000000', paddingBottom:5}}>Delivery Date: 26/12/2020 - 2/1/2020</Text>
         <Text style={{fontSize:14, color: '#FD8209', paddingBottom:5}}></Text>
@@ -245,65 +169,29 @@ const CreateOrderScreen = ({navigation}) => {
           <Text style={styles.panelButtonTitle}>Create An Order</Text>
       </TouchableOpacity>
 
-      <BottomSheet style={{flex:1, height:200}}
-          ref={ref => bottomSheetNote = ref}
-          itemDivider={1}
-          backButtonEnabled={true}
-          coverScreen={false}
-          isOpen={false}
+      <BottomPopup
+          title = 'Services'
+          ref ={(target) => bottomSheetServices = target}
+          updateService = {(val)=> updateServiceParent(val)} 
+          itemList = {serviceData}
         >
-          <View style={{height:300}}>
-            <Text style={{fontSize:20}}>Note</Text>
-            <TextInput
-              multiline={true}
-              numberOfLines={10}
-              style={styles.textAreaInput}
-              placeholder=' Please input your note.'
-            />
+      </BottomPopup>
 
-            <TouchableOpacity style={styles.noteButton} onPress={_closeModal}>
-                <Text style={styles.panelButtonTitle}>Confirm</Text>
-            </TouchableOpacity>
-          </View>
-      </BottomSheet>
-
-      <BottomSheet style={{flex:1, height:200}}
-          ref={ref => bottomSheetDeliveryTime = ref}
-          itemDivider={1}
-          backButtonEnabled={true}
-          coverScreen={false}
-          isOpen={false}
+      <BottomPopup
+          title = 'Delivery Time'
+          ref ={(target) => bottomSheetDeliveryTime = target}
+          updateDeliveryTime = {(val)=> updateDeliveryTimeParent(val)}  
+          itemList = {deliveryTimeData}
         >
-          <View style={{height:300}}>
-            <Text style={{fontSize:20}}>Delivery Time</Text>
-            <View style={styles.deliveryTimeList}>
-              {
-                deliveryTimeData.map((item,i) => 
-                <Text style={ (i === deliveryTimeData.length-1) ? styles.deliveryTimeItemLastChild : styles.deliveryTimeItem} key={item.id} onPress={_closeModalDeliveryTime}>
-                  {item.description}</Text>)
-              }
-            </View>
-          </View>
-      </BottomSheet>
+      </BottomPopup>
 
-      <BottomSheet style={{flex:1, height:200}}
-          ref={ref => bottomSheetServices = ref}
-          itemDivider={1}
-          backButtonEnabled={true}
-          coverScreen={false}
-          isOpen={false}
+      <BottomPopup
+          title = 'Note'
+          ref = {(target) => bottomSheetNote = target}
+          updateNoteContent={(val)=> updateNoteContentParent(val)} 
         >
-          <View style={{height:300}}>
-            <Text style={{fontSize:20}}>Services</Text>
-            <View style={styles.deliveryTimeList}>
-              {
-                serviceData.map((item,i) => 
-                <Text style={ (i === serviceData.length-1) ? styles.deliveryTimeItemLastChild : styles.deliveryTimeItem} key={item.id} onPress={_closeModalServices}>
-                  {item.title}</Text>)
-              }
-            </View>
-          </View>
-      </BottomSheet>
+      </BottomPopup>
+
     </ScrollView>
   );
 };
@@ -366,25 +254,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
   },
+
   panel: {
     padding: 20,
     backgroundColor: '#FFFFFF',
     paddingTop: 20,
   },
+
   header: {
     backgroundColor: '#FFFFFF',
     shadowColor: '#333333',
     shadowOffset: {width: -1, height: -3},
     shadowRadius: 2,
     shadowOpacity: 0.4,
-    // elevation: 5,
+
     paddingTop: 20,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
+
   panelHeader: {
     alignItems: 'center',
   },
+
   panelHandle: {
     width: 40,
     height: 8,
@@ -392,16 +284,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#00000040',
     marginBottom: 10,
   },
+  
   panelTitle: {
     fontSize: 27,
     height: 35,
   },
+
   panelSubtitle: {
     fontSize: 14,
     color: 'gray',
     height: 30,
     marginBottom: 10,
   },
+
   panelButton: {
     padding: 13,
     borderRadius: 10,
@@ -409,11 +304,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 7,
   },
+
   panelButtonTitle: {
     fontSize: 17,
     fontWeight: 'bold',
     color: 'white',
   },
+
   action: {
     flexDirection: 'row',
     borderBottomWidth: 1,
@@ -431,6 +328,7 @@ const styles = StyleSheet.create({
     borderRadius:10,
     height:40,
   },
+
   actionError: {
     flexDirection: 'row',
     marginTop: 10,
@@ -438,8 +336,10 @@ const styles = StyleSheet.create({
     borderBottomColor: '#FF0000',
     paddingBottom: 5,
   },
+
   textInput: {
     flex: 1,
     color: '#05375a',
   },
+
 });
