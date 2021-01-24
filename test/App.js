@@ -45,6 +45,7 @@ import YourOrderDetailDeliveryStatusScreen from './screens/HomeScreens/YourOrder
 import UserContext from './screens/HomeScreens/UserContext';
 import UserContextProfile from './screens/ProfileScreens/UserContext';
 import UpdateLocationDelivery from './screens/HomeScreens/UpdateLocationDelivery';
+import ScanQrScreen from './screens/EmployeeScreens/ScanQrScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -117,7 +118,7 @@ const App: () => React$Node = () => {
     
           <ProfileStack.Screen
             name="Your Orders"
-            component={YourOrderScreen}
+            component={ScanQrScreen}
           />
 
           <ProfileStack.Screen

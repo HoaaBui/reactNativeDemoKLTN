@@ -82,7 +82,6 @@ export class BottomPopup extends React.Component {
                         </View>
 
                         <View>
-                            <Text>Body content</Text>
                             {
                                 this.state.title=== 'Services' && this.state.itemListData && this.state.itemListData.map((item,i) => 
                                     <Text style={ (i === this.state.itemListData.length-1)
